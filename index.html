@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#12171c">
+<title>King | Information Technology Student Portfolio</title>
+<meta name="description" content="Portfolio of King, an Information Technology student focused on cybersecurity, networking, cloud, databases, and generative AI.">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0e1216;
+    --bg-raised: #12171c;
+    --surface: #171d23;
+    --surface-hover: #1b222a;
+    --ink: #e8edf2;
+    --muted: #a9b4bf;
+    --accent: #58a6ff;
+    --accent-strong: #79b8ff;
+    --accent-cyan: #56d4e0;
+    --accent-soft: rgba(88, 166, 255, .13);
+    --border: #2a323b;
+    --border-strong: #3a4552;
+    --on-accent: #0b1118;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --max: 1080px;
+    --ease: cubic-bezier(.2, .6, .2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Keeps anchored sections clear of the sticky header (updated by script to the real header height) */
+    scroll-padding-top: calc(var(--header-h, 6.5rem) + 1rem);
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent-strong); }
+  a:hover { color: var(--ink); }
+
+  :focus-visible {
+    outline: 3px solid var(--accent-strong);
+    outline-offset: 3px;
+  }
+
+  main:focus-visible { outline: none; }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+    padding: .6rem 1rem;
+    border-radius: 6px;
+    z-index: 20;
+  }
+  .skip-link:hover { color: var(--on-accent); }
+  .skip-link:focus { top: 1rem; }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Header and navigation */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-raised);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-header .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: .5rem .9rem;
+    border-radius: 6px;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: .975rem;
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease;
+  }
+
+  .nav a[aria-current="true"] {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+
+  /* Sections */
+  .section { padding: 5rem 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+
+  .section-head { margin-bottom: 2.5rem; }
+
+  h1, h2, h3 {
+    font-family: var(--sans);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin-bottom: .75rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--accent);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .6rem;
+  }
+
+  .lead {
+    max-width: 62ch;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .section-head .lead { padding-left: calc(1rem + 4px); }
+
+  /* Hero */
+  .hero {
+    padding: 5.5rem 0 6rem;
+    background: linear-gradient(180deg, var(--bg-raised) 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero .wrap {
+    display: grid;
+    gap: 3.5rem;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(3.25rem, 9vw, 5.25rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin: 0 0 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 30rem;
+  }
+
+  .hero p.lead {
+    margin: 0 0 2.25rem;
+    font-size: 1.15rem;
+    color: #c3ccd5;
+  }
+
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: .7rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid var(--accent);
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+  }
+
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-secondary { background: transparent; color: var(--accent-strong); }
+
+  .focus-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+
+  .focus-panel h2 {
+    font-size: 1.1rem;
+    padding-left: 0;
+    border-left: 0;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .focus-panel ul { margin: 0; padding: 0; list-style: none; }
+
+  .focus-panel li {
+    padding: .7rem 0;
+    border-top: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .focus-panel li:first-child { border-top: 0; padding-top: 0; }
+  .focus-panel li:last-child { padding-bottom: 0; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    gap: 2.5rem 3.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-grid p { margin: 0 0 1.25rem; max-width: 58ch; color: var(--muted); }
+  .about-grid p:last-child { margin-bottom: 0; }
+  .about-grid > div:first-child > p:first-child { color: var(--ink); font-size: 1.15rem; }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+
+  .card p { margin: 0 0 1.25rem; color: var(--muted); }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tags li {
+    max-width: 100%;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border: 1px solid rgba(88, 166, 255, .25);
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: .2rem .7rem;
+    border-radius: 999px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .skills-grid .card { border-top: 3px solid var(--border-strong); }
+  .skills-grid .card:nth-child(1) { border-top-color: var(--accent); }
+  .skills-grid .card:nth-child(2) { border-top-color: var(--accent-cyan); }
+  .skills-grid .card:nth-child(3) { border-top-color: var(--accent-strong); }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    transition: transform .22s var(--ease), border-color .22s var(--ease),
+                box-shadow .22s var(--ease), background-color .22s var(--ease);
+  }
+
+  .project .tags { margin-top: auto; padding-top: .5rem; }
+
+  .project-kind {
+    margin: 0 0 .5rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+  }
+
+  .project h3 { font-size: 1.3rem; margin-bottom: .75rem; }
+
+  .project.featured { grid-column: 1 / -1; padding: 2.25rem; }
+  .project.featured h3 { font-size: 1.55rem; }
+  .project.featured > p { max-width: 62ch; }
+
+  .feature-list {
+    columns: 2;
+    column-gap: 2.5rem;
+    margin: 0 0 1.5rem;
+    padding-left: 1.2rem;
+    color: var(--ink);
+  }
+  .feature-list li { margin-bottom: .5rem; break-inside: avoid; }
+  .feature-list li::marker { color: var(--accent); }
+
+  /* Hover effects only for devices with a real hover-capable pointer (not touch) */
+  @media (hover: hover) and (pointer: fine) {
+    .nav a:hover { background: var(--surface-hover); color: var(--ink); }
+    .nav a[aria-current="true"]:hover { background: var(--accent-soft); color: var(--accent-strong); }
+    .btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: var(--on-accent); }
+    .btn-secondary:hover { background: var(--accent-soft); color: var(--ink); }
+
+    .project:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      background: var(--surface-hover);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+    }
+  }
+
+  /* Footer */
+  .site-footer {
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 0;
+    color: var(--muted);
+    font-size: .975rem;
+  }
+
+  .site-footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem 1.5rem;
+  }
+
+  .site-footer p { margin: 0; }
+
+  .site-footer a {
+    display: inline-block;
+    padding: .6rem 0;
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+    .about-grid { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+    .skills-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    body { font-size: 1rem; }
+    .section { padding: 3.5rem 0; }
+    .section-head { margin-bottom: 2rem; }
+    .hero { padding: 3rem 0 3.5rem; }
+    .projects-grid { grid-template-columns: minmax(0, 1fr); }
+    .feature-list { columns: 1; }
+    .project, .project.featured { padding: 1.5rem; }
+    .site-header .wrap { justify-content: center; }
+    .nav a { padding: .5rem .75rem; }
+    .btn { flex: 1 1 100%; }
+  }
+
+  /* Very small screens (320px to ~400px) */
+  @media (max-width: 400px) {
+    .wrap { padding: 0 1rem; }
+    .brand { font-size: 1.1rem; }
+    .nav a { padding: .5rem .6rem; }
+    .card, .focus-panel,
+    .project, .project.featured { padding: 1.25rem; }
+    h2 { padding-left: .75rem; }
+    .section-head .lead { padding-left: calc(.75rem + 4px); }
+    .project.featured h3 { font-size: 1.4rem; }
+  }
+
+  @media (forced-colors: active) {
+    .nav a[aria-current="true"] { text-decoration: underline; text-underline-offset: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+      scroll-behavior: auto !important;
+    }
+    .project:hover { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">King</a>
+    <nav class="nav" aria-label="Main navigation">
+      <ul role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section id="top" class="hero" aria-labelledby="hero-name">
+    <div class="wrap">
+      <div>
+        <h1 id="hero-name">King</h1>
+        <p class="hero-title">Information Technology | Cybersecurity | AI</p>
+        <p class="lead">I'm an Information Technology student with a focus on cybersecurity. Most of what is here comes from projects and hands-on work I've done while learning networking, databases, cloud, security, and AI.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-secondary" href="#about">About me</a>
+        </div>
+      </div>
+
+      <aside class="focus-panel" aria-labelledby="focus-heading">
+        <h2 id="focus-heading">Areas of study</h2>
+        <ul role="list">
+          <li>Cybersecurity</li>
+          <li>Networking</li>
+          <li>Cloud technology</li>
+          <li>Databases</li>
+          <li>Generative AI</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about" class="section" aria-labelledby="about-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="about-heading">About me</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I'm studying Information Technology with a cybersecurity focus, and that's the area I'm most interested in. A lot of what I've learned so far has come from actually working through projects, labs, and problems instead of just reading about them.</p>
+          <p>I learn better by doing it. That could be working inside a virtual machine, figuring out a SQL query, troubleshooting something that isn't working, or testing how an AI assistant uses its own source information.</p>
+        </div>
+        <div>
+          <p>Right now I've been working with Windows and Linux security labs, databases, networking, and AI projects. One of the bigger ones was the RAG assistant I built using Python and Google Colab.</p>
+          <p>I'm still building my experience and figuring out exactly where I want to land in IT, but cybersecurity, systems, and the practical side of AI are the areas I keep coming back to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section" aria-labelledby="skills-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="skills-heading">Skills</h2>
+        <p class="lead">Skills I'm developing through coursework and academic projects.</p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="card">
+          <h3>Security and systems</h3>
+          <p>Core concepts and hands-on practice in protecting and managing systems.</p>
+          <ul class="tags" role="list">
+            <li>Cybersecurity fundamentals</li>
+            <li>Networking</li>
+            <li>Windows</li>
+            <li>Linux</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Data and cloud</h3>
+          <p>Working with structured data and learning how cloud services fit together.</p>
+          <ul class="tags" role="list">
+            <li>Databases</li>
+            <li>SQL</li>
+            <li>Cloud fundamentals</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Tools and AI</h3>
+          <p>Tools I use to build, document, and experiment with AI projects.</p>
+          <ul class="tags" role="list">
+            <li>Google Colab</li>
+            <li>GitHub</li>
+            <li>Prompt engineering</li>
+            <li>Generative AI</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section" aria-labelledby="projects-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="projects-heading">Projects</h2>
+        <p class="lead">Academic projects and coursework that show what I've been working on.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="card project featured">
+          <p class="project-kind">Academic project</p>
+          <h3>Edison Auto Detail RAG Assistant</h3>
+          <p>A retrieval-augmented generation (RAG) project that answers questions using a custom Source of Truth instead of relying on the model's general knowledge.</p>
+          <ul class="feature-list">
+            <li>Custom Source of Truth document</li>
+            <li>TF-IDF and cosine similarity retrieval</li>
+            <li>Prompt augmentation with retrieved context</li>
+            <li>Answer generation with Gemini</li>
+            <li>Source citations in responses</li>
+            <li>Multi-policy reasoning</li>
+            <li>Hallucination protection</li>
+          </ul>
+          <ul class="tags" role="list">
+            <li>RAG</li>
+            <li>Generative AI</li>
+            <li>Prompt engineering</li>
+            <li>Google Colab</li>
+          </ul>
+        </article>
+
+        <article class="card project">
+          <p class="project-kind">Academic labs</p>
+          <h3>Defensive Security Labs</h3>
+          <p>Hands-on security work using virtual machines in Windows and Linux/Kali environments, covering system administration and defensive security concepts.</p>
+          <ul class="tags" role="list">
+            <li>Windows</li>
+            <li>Linux / Kali</li>
+            <li>Virtual machines</li>
+            <li>System administration</li>
+          </ul>
+        </article>
+
+        <article class="card project">
+          <p class="project-kind">Academic projects</p>
+          <h3>Database Management Projects</h3>
+          <p>Database work covering relational design, queries, SQL concepts, and data management, including projects built in Microsoft Access.</p>
+          <ul class="tags" role="list">
+            <li>Relational design</li>
+            <li>SQL</li>
+            <li>Microsoft Access</li>
+            <li>Data management</li>
+          </ul>
+        </article>
+
+        <article class="card project">
+          <p class="project-kind">Coursework</p>
+          <h3>Networking and Cybersecurity Coursework</h3>
+          <p>Practical work involving networking, computer systems, and security, including troubleshooting problems and applying what I learned in class.</p>
+          <ul class="tags" role="list">
+            <li>Networking</li>
+            <li>Computer systems</li>
+            <li>Security</li>
+            <li>Troubleshooting</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; <span id="year">2026</span> King. Information Technology student portfolio.</p>
+    <p><a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<script>
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Keep anchor scrolling clear of the sticky header, even when the header wraps to two rows
+  (function () {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+
+    function setHeaderHeight() {
+      document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+    }
+
+    setHeaderHeight();
+    window.addEventListener("resize", setHeaderHeight);
+    window.addEventListener("load", setHeaderHeight);
+    if ("ResizeObserver" in window) new ResizeObserver(setHeaderHeight).observe(header);
+  })();
+
+  // Highlight the nav link for the section currently in view
+  (function () {
+    var header = document.querySelector(".site-header");
+    var links = document.querySelectorAll('.nav a[href^="#"]');
+    var sections = [];
+    links.forEach(function (link) {
+      var target = document.querySelector(link.getAttribute("href"));
+      if (target) sections.push({ link: link, el: target });
+    });
+    if (!sections.length) return;
+
+    function update() {
+      var offset = (header ? header.offsetHeight : 0) + window.innerHeight * 0.2;
+      var current = null;
+      sections.forEach(function (s) {
+        if (s.el.getBoundingClientRect().top <= offset) current = s;
+      });
+      // At the very bottom of the page, the last section counts as current
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = sections[sections.length - 1];
+      }
+      sections.forEach(function (s) {
+        if (s === current) s.link.setAttribute("aria-current", "true");
+        else s.link.removeAttribute("aria-current");
+      });
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  })();
+</script>
+
+</body>
+</html>
